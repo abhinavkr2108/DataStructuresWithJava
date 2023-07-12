@@ -2,7 +2,11 @@ package Recursion.RecursionOnArrays;
 
 import java.util.Scanner;
 
-public class T5_TargetValueIndex {
+/**
+ * Given an array and target. Print all the indices where target is present
+ */
+
+public class T6_AllIndices {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Size of Array: ");
@@ -14,21 +18,15 @@ public class T5_TargetValueIndex {
         }
         System.out.println("Enter target: ");
         int target = scanner.nextInt();
-        int index = findIndex(array,0,target);
-        System.out.println("Number present at index: "+index);
-
+        findIndex(array,0,target);
     }
-    private static int findIndex(int[] array, int index, int target){
-        // Base Case
+    private static void findIndex(int[] array, int index, int target){
         if (index==array.length){
-            return -1;
+            return;
         }
-        // Self Work (Checking the first index)
         if (array[index]==target){
-            return index;
+            System.out.print(index +" ");
         }
-        // Recursion
-        return findIndex(array, index+1, target);
-
+        findIndex(array, index+1, target);
     }
 }

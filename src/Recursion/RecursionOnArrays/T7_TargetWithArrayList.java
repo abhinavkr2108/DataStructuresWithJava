@@ -1,8 +1,9 @@
 package Recursion.RecursionOnArrays;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
-public class T5_TargetValueIndex {
+public class T7_TargetWithArrayList {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Size of Array: ");
@@ -14,21 +15,20 @@ public class T5_TargetValueIndex {
         }
         System.out.println("Enter target: ");
         int target = scanner.nextInt();
-        int index = findIndex(array,0,target);
-        System.out.println("Number present at index: "+index);
-
+        var list = findIndex(array,0,target);
+        System.out.print(list);
     }
-    private static int findIndex(int[] array, int index, int target){
-        // Base Case
+    private static ArrayList<Integer> findIndex(int[] array, int index, int target){
         if (index==array.length){
-            return -1;
+            return new ArrayList<>();
         }
-        // Self Work (Checking the first index)
+        var list = new ArrayList<Integer>();
         if (array[index]==target){
-            return index;
+            list.add(index);
         }
-        // Recursion
-        return findIndex(array, index+1, target);
+        var ans = findIndex(array, index+1, target);
+        list.addAll(ans);
+        return list;
 
     }
 }
