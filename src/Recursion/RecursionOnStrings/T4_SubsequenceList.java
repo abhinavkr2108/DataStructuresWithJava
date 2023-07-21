@@ -3,7 +3,11 @@ package Recursion.RecursionOnStrings;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class T4_Subsequence {
+/**
+ * For a given string, return all its subsequences in an array list
+ * In subsequence, order does not change
+ */
+public class T4_SubsequenceList {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter a string: ");
