@@ -30,6 +30,10 @@ public class T1_FrogJump {
             return 0;
         }
         int path1 = bestPath(heightArray, length, index+1) + Math.abs(heightArray[index+1]-heightArray[index]);
+        /**
+         * If we are on path n-2 then we have only one path in this case we return path 1
+         * Base case comes after calculating path 1
+         */
         if (index==length-2){
             return path1;
         }
@@ -37,15 +41,18 @@ public class T1_FrogJump {
         return Math.min(path1,path2);
     }
     private static int optimizedPath(int[] heightArray, int length, int index){
+        // Base Case
         if (index==length-1){
             return 0;
         }
         if (index==length-2){
             return Math.abs(heightArray[index+1]-heightArray[index]);
         }
+        // Self Work
         int jump1 = Math.abs(heightArray[index+1]-heightArray[index]);
         int jump2 = Math.abs(heightArray[index+2]-heightArray[index]);
 
+        // Recursive Work
         int path1 = optimizedPath(heightArray, length, index+1) + jump1;
         int path2 = optimizedPath(heightArray, length, index+2) + jump2;
         return Math.min(path1, path2);
