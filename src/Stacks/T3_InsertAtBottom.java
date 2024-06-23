@@ -28,9 +28,15 @@ public class T3_InsertAtBottom {
 
         System.out.println("Enter number to insert at bottom: ");
         int num = scanner.nextInt();
-
         while (!stack1.isEmpty()){
             stack2.push(stack1.pop());
         }
+        stack1.push(num);
+        while (!stack2.isEmpty()){
+            stack1.push(stack2.pop());
+        }
+
+        System.out.println("Modified Stack");
+        System.out.println(stack1);
     }
 }
