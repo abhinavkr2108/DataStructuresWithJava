@@ -35,12 +35,23 @@ public class T11_StackUsingLinkedList {
             }
             return head.data;
         }
-        void display(){
+        void displayRev(){
             Node temp = head;
             while (temp!=null){
                 System.out.print(temp.data+"-> ");
                 temp = temp.next;
             }
+            System.out.println();
+        }
+        void displayRec(Node h){
+            if(h==null){
+                return;
+            }
+            displayRec(h.next);
+            System.out.print(h.data + " ");
+        }
+        void display(){
+            displayRec(head);
             System.out.println();
         }
         int size(){
