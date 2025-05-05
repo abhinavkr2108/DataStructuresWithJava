@@ -2,68 +2,35 @@ import java.util.Arrays;
 
 public class Practice {
     public static void main(String[] args) {
-        int[] arr = {-1,-2,3,4,-5,-9,1};
-        int[] newArr = separateNegativeAndPositive(arr);
-        System.out.print(Arrays.toString(newArr));
-        System.out.println();
-
-        int[] prod = {1,2,3};
-        int[] newArray = getProductArrayExceptSelf(prod);
-        System.out.println(Arrays.toString(newArray));
-
+        int[] arr = {1,2,3,4};
+        int n = beautifulSplits(arr);
+        System.out.println(n);
 
     }
-    public static int[] separateNegativeAndPositive(int a[]) {
+    public static int beautifulSplits(int[] nums) {
+        int n = nums.length;
+        int count = 0;
 
-        int st = 0;
-        int end = a.length - 1;
+        for (int i = 1; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                int[] nums1 = Arrays.copyOfRange(nums, 0, i);
+                int[] nums2 = Arrays.copyOfRange(nums, i, j);
+                int[] nums3 = Arrays.copyOfRange(nums, j, n);
 
-        while (st < end) {
-            while (a[st] < 0) {
-                st++;
+                if (isPrefix(nums1, nums2) || isPrefix(nums2, nums3)) {
+                    count++;
+                }
             }
-            while (a[end] >= 0) {
-                end--;
-            }
-            if (st < end) {
-                int temp = a[st];
-                a[st] = a[end];
-                a[end] = temp;
-            }
-
         }
-
-        return a;
+        return count;
     }
-    private static void productExceptSelf(int[] arr){
-        int len = arr.length;
-        int product =1;
-        for (int i = 0; i < len; i++) {
-            product = product*arr[i];
-        }
-        for (int i = 0; i < len; i++) {
-            arr[i] = product/arr[i];
-        }
+    private static boolean isPrefix(int[] arr1, int[] arr2) {
+        if (arr1.length > arr2.length) return false;
 
-    }
-    public static int[] getProductArrayExceptSelf(int[] arr)
-    {
-        int n = arr.length;
-        int[] result = new int[n];
-        int product = 1;
-        // Product of elements at left
-        for(int i=0; i<n; i++)
-        {
-            result[i] = product; //result[0] = 1; result[1]= 1; result[2]= 2
-            product = product*arr[i];
+        for (int i = 0; i < arr1.length; i++) {
+            if (arr1[i] != arr2[i]) return false;
         }
-        product =1;
-        // Product of elements at right
-        for(int i=n-1; i>=0; i--)
-        {
-            result[i]= result[i]*product;
-            product= product*arr[i];
-        }
-        return result;
+        return true;
     }
+
 }
